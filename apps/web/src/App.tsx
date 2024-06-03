@@ -9,7 +9,7 @@ function App() {
       <Navbar />
 
       <section id="hero">
-        <h1 className="scroll-m-20 text-6xl font-extrabold tracking-tight lg:text-7xl">
+        <h1 className="scroll-m-20 text-6xl font-extrabold tracking-tight lg:text-7xl lg:w-1/2">
           Let&apos;s rethink legal work.
         </h1>
         <p className="w-3/4 lg:w-2/4 text-muted-foreground lg:text-lg mt-8">

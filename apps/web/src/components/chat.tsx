@@ -6,7 +6,7 @@ import { RocketIcon } from "@radix-ui/react-icons";
 
 export default function Chat() {
   return (
-    <section id="chat" className="flex flex-col gap-5">
+    <section id="chat" className="flex flex-col gap-8">
       <div className="flex gap-5">
         <Input
           className="w-full"
