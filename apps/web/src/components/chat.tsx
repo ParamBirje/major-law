@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
-import { RocketIcon } from "@radix-ui/react-icons";
+import { PaperPlaneIcon, RocketIcon } from "@radix-ui/react-icons";
 
 export default function Chat() {
   return (
@@ -14,7 +14,10 @@ export default function Chat() {
           placeholder="What does the article 15 of GDPR say?"
         />
 
-        <Button className="h-auto w-[15%]">Search</Button>
+        <Button className="h-auto w-[15%] flex gap-2 items-center">
+          <p>Send</p>
+          <PaperPlaneIcon />
+        </Button>
       </div>
 
       <div className="flex flex-col-reverse md:flex-row gap-5">
@@ -23,7 +26,7 @@ export default function Chat() {
           <div className="flex flex-col gap-5">
             <Alert>
               <RocketIcon className="h-4 w-4" />
-              <AlertTitle>Copilot</AlertTitle>
+              <AlertTitle className="text-green-500">Assistant</AlertTitle>
               <AlertDescription>Hi! What can I help you with?</AlertDescription>
             </Alert>
           </div>
