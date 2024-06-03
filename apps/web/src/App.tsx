@@ -9,11 +9,10 @@ function App() {
       <Navbar />
 
       <section id="hero">
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-7xl">
-          Let&apos;s rethink <br />
-          legal work.
+        <h1 className="scroll-m-20 text-6xl font-extrabold tracking-tight lg:text-7xl">
+          Let&apos;s rethink legal work.
         </h1>
-        <p className="w-2/4 text-muted-foreground text-lg mt-8">
+        <p className="w-3/4 lg:w-2/4 text-muted-foreground lg:text-lg mt-8">
           A.I powered legal assistant that provides a centralized, easily accessible knowledge base
           for all your legal paperwork and public sources.
         </p>
