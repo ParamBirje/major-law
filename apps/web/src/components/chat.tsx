@@ -17,8 +17,8 @@ export default function Chat() {
         <Button className="h-auto w-[15%]">Search</Button>
       </div>
 
-      <div className="flex gap-5">
-        <div className="w-2/3">
+      <div className="flex flex-col-reverse md:flex-row gap-5">
+        <div className="md:w-2/3">
           <h3 className="mb-5 scroll-m-20 text-2xl font-semibold tracking-tight">Messages</h3>
           <div className="flex flex-col gap-5">
             <Alert>
@@ -29,7 +29,7 @@ export default function Chat() {
           </div>
         </div>
 
-        <Card className="w-1/3">
+        <Card className="md:w-1/3">
           <CardHeader>
             <CardTitle className="text-lg">Web Sources</CardTitle>
             <CardDescription>Add URLs of the webpages you want to reference.</CardDescription>
