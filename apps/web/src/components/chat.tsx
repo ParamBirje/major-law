@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
-import { AvatarIcon, PaperPlaneIcon, RocketIcon } from "@radix-ui/react-icons";
+import { AvatarIcon, PaperPlaneIcon, RocketIcon, TrashIcon } from "@radix-ui/react-icons";
 
 export default function Chat() {
   return (
@@ -48,7 +48,14 @@ export default function Chat() {
           </CardHeader>
 
           <CardContent>
-            <div>sources</div>
+            <Alert>
+              <div className="flex items-center justify-between">
+                <AlertTitle>gdpr.com</AlertTitle>
+                <button>
+                  <TrashIcon className="text-red-400 hover:text-red-600" />
+                </button>
+              </div>
+            </Alert>
           </CardContent>
         </Card>
       </div>
