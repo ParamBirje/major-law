@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
-import { PaperPlaneIcon, RocketIcon } from "@radix-ui/react-icons";
+import { AvatarIcon, PaperPlaneIcon, RocketIcon } from "@radix-ui/react-icons";
 
 export default function Chat() {
   return (
@@ -27,7 +27,14 @@ export default function Chat() {
             <Alert>
               <RocketIcon className="h-4 w-4" />
               <AlertTitle className="text-green-500">Assistant</AlertTitle>
-              <AlertDescription>Hi! What can I help you with?</AlertDescription>
+              <AlertDescription>
+                Yes certainly, what article do you need help with?
+              </AlertDescription>
+            </Alert>
+            <Alert>
+              <AvatarIcon className="h-4 w-4" />
+              <AlertTitle>User</AlertTitle>
+              <AlertDescription>Hey I need help with a certain article in GDPR?</AlertDescription>
             </Alert>
           </div>
         </div>
