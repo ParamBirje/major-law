@@ -2,11 +2,14 @@ import boto3
 import json
 
 client = boto3.client("bedrock-runtime", region_name="us-east-1")
-# Set the model ID, e.g., Command R.
 model_id = "cohere.command-r-v1:0"
 
 
 def one_time_response(prompt: str) -> str:
+    '''
+    Provides a one time response for the given `prompt`
+    '''
+
     prompt = "Describe what is life in one line."
     native_request = {
         "message": prompt,
