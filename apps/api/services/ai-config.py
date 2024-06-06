@@ -1,8 +1,35 @@
 import boto3
 import json
+from langchain_aws import BedrockLLM
+from langchain.chains import ConversationChain
+from langchain.memory import ConversationBufferMemory
+from langchain.prompts import PromptTemplate
 
 client = boto3.client("bedrock-runtime", region_name="us-east-1")
 model_id = "cohere.command-r-v1:0"
+llm = BedrockLLM(
+    credentials_profile_name="default",
+    region_name="us-east-1",
+    model_id=model_id,
+    model_kwargs={
+        "temperature": 0.5,
+        # "max_gen_len": 1024
+    })
+
+
+def one_time_lang(text: str) -> str:
+    prompt_template = PromptTemplate(
+        input_variables=["text"],
+        template="Answer this: {text}"
+    )
+    chain = ConversationChain(llm=llm, memory=ConversationBufferMemory())
+
+    res = chain.predict(input=text)
+
+    return res
+
+
+print(one_time_lang("what are you doing"))
 
 
 def one_time_response(prompt: str) -> str:
