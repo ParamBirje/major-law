@@ -1,10 +1,8 @@
 from fastapi import Request
 from datetime import datetime
-from starlette.middleware.base import BaseHTTPMiddleware, DispatchFunction
+from starlette.middleware.base import BaseHTTPMiddleware
 from typing import Dict
 import asyncio
-
-from starlette.types import ASGIApp
 
 # Dictionary to track session activity
 SESSION_ACTIVITY: Dict[str, datetime] = {}
@@ -38,6 +36,7 @@ async def check_session_timeouts(interval: int = 60):
         ]
 
         for session_id in expired_sessions:
+            print("clearing data for", session_id)
             SESSION_ACTIVITY.pop(session_id)
 
         await asyncio.sleep(interval)
