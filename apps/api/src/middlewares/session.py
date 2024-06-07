@@ -18,7 +18,7 @@ class SessionTimeoutMiddleware(BaseHTTPMiddleware):
         super().__init__(app)
 
     async def dispatch(self, request: Request, call_next):
-        session_id = request.cookies.get("session_id")
+        session_id = request.headers.get("session_id")
 
         if session_id:
             SESSION_ACTIVITY[session_id] = datetime.now()
