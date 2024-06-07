@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 function Heartbeat() {
-  const intervalInMinutes = 0.2;
+  const intervalInMinutes = 3;
 
   useEffect(() => {
     window.onbeforeunload = function () {
