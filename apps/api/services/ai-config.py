@@ -12,10 +12,10 @@ model_id = "cohere.command-r-v1:0"
 llm = BedrockLLM(
     credentials_profile_name="default",
     region_name="us-east-1",
-    model_id=model_id,
+    model_id="amazon.titan-text-express-v1",
     model_kwargs={
         "temperature": 0.5,
-        # "max_gen_len": 1024
+        # "max_gen_len": 124
     })
 
 
@@ -26,12 +26,12 @@ def one_time_lang(text: str) -> str:
     # )
     chain = ConversationChain(llm=llm, memory=ConversationBufferMemory())
 
-    res = chain.predict(input=text)
+    res = chain.invoke(input=text)
 
     return res
 
 
-# print(one_time_lang("what are you doing"))
+# print(one_time_lang("Describe if the earth round in one sentence"))
 
 
 def one_time_response(prompt: str, chat_history: List[Dict]) -> str:
