@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from src.middlewares.session import SessionTimeoutMiddleware, check_session_timeouts
-from starlette.middleware.base import BaseHTTPMiddleware
 from fastapi.middleware.cors import CORSMiddleware
 from src.routes.chat import router as ChatRouter
 from src.routes.heartbeat import router as HeartbeatRouter
@@ -9,10 +8,8 @@ import asyncio
 
 app = FastAPI()
 origins = [
-    "http://localhost.tiangolo.com",
-    "https://localhost.tiangolo.com",
     "http://localhost",
-    "http://localhost:8080",
+    "http://localhost:5173",
 ]
 
 # Routers
@@ -27,9 +24,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-session_middleware = SessionTimeoutMiddleware()
-app.add_middleware(BaseHTTPMiddleware, dispatch=session_middleware)
+app.add_middleware(SessionTimeoutMiddleware)
 
 
 @app.on_event("startup")

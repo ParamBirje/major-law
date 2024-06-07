@@ -1,7 +1,10 @@
 from fastapi import Request
 from datetime import datetime
+from starlette.middleware.base import BaseHTTPMiddleware, DispatchFunction
 from typing import Dict
 import asyncio
+
+from starlette.types import ASGIApp
 
 # Dictionary to track session activity
 SESSION_ACTIVITY: Dict[str, datetime] = {}
@@ -10,9 +13,11 @@ SESSION_ACTIVITY: Dict[str, datetime] = {}
 TIMEOUT_MINUTES = 6
 
 
-class SessionTimeoutMiddleware:
-    async def __call__(self, request: Request, call_next):
-        print("SessionTimeoutMiddleware")
+class SessionTimeoutMiddleware(BaseHTTPMiddleware):
+    def __init__(self, app) -> None:
+        super().__init__(app)
+
+    async def dispatch(self, request: Request, call_next):
         session_id = request.cookies.get("session_id")
 
         if session_id:
