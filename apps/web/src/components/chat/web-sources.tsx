@@ -90,6 +90,10 @@ export default function WebSources() {
         ]);
 
         setSubmitSuccessful(true);
+
+        toast({
+          description: "✅ Webpage added to references successfully.",
+        });
       }
     } catch (error) {
       console.error(error);
