@@ -26,6 +26,7 @@ import { Input } from "../ui/input";
 export default function WebSources() {
   const [webpages, setWebpages] = useState<Webpage[]>([]);
   const [submitSuccessful, setSubmitSuccessful] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   function handleDeleteWebpage(delWebpage: Webpage) {
     setWebpages((prevWebpages) =>
@@ -33,15 +34,43 @@ export default function WebSources() {
     );
   }
 
-  function handleAddWebpage(e: FormEvent) {
+  async function handleAddWebpage(e: FormEvent) {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    setWebpages((prevWebpages) => [
-      ...prevWebpages,
-      { url: String(formData.get("webpage_url")) },
-    ]);
+    const url = String(formData.get("webpage_url"));
 
-    setSubmitSuccessful(true);
+    try {
+      setLoading(true);
+
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/websource`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            session_id: sessionStorage.getItem("session_id") || "",
+          },
+          body: JSON.stringify({ url: url }),
+        }
+      );
+
+      const data = await response.json();
+      if (response.ok) {
+        setWebpages((prevWebpages) => [
+          ...prevWebpages,
+          {
+            message_id: data.message_id,
+            url: url,
+          },
+        ]);
+
+        setSubmitSuccessful(true);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
+    setLoading(false);
   }
 
   return (
@@ -69,6 +98,7 @@ export default function WebSources() {
                   required
                   autoComplete="off"
                   type="url"
+                  disabled={loading}
                   name="webpage_url"
                   placeholder="https://example.com/article22"
                 />
@@ -80,8 +110,12 @@ export default function WebSources() {
                   </AlertDialogAction>
                 ) : (
                   <>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <Button type="submit">Submit</Button>
+                    <AlertDialogCancel disabled={loading}>
+                      Cancel
+                    </AlertDialogCancel>
+                    <Button disabled={loading} type="submit">
+                      {loading ? "Referencing..." : "Submit"}
+                    </Button>
                   </>
                 )}
               </AlertDialogFooter>

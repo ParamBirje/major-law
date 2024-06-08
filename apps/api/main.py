@@ -4,6 +4,7 @@ from src.middlewares.session import SessionTimeoutMiddleware, check_session_time
 from fastapi.middleware.cors import CORSMiddleware
 from src.routes.chat import router as ChatRouter
 from src.routes.heartbeat import router as HeartbeatRouter
+from src.routes.web_source import router as WebSourceRouter
 import asyncio
 
 app = FastAPI()
@@ -15,6 +16,7 @@ origins = [
 # Routers
 app.include_router(ChatRouter)
 app.include_router(HeartbeatRouter)
+app.include_router(WebSourceRouter)
 
 # Middlewares
 app.add_middleware(

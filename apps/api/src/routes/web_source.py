@@ -23,7 +23,8 @@ async def reference_webpage(request: Request, webpage: Webpage):
     print("Url received", webpage.url)
 
     try:
-        webpage_content = scrape(webpage.url)
+        webpage_content = scrape(webpage.url)[:180000] # only includes the first 180,000 characters (around 40,000 words)
+        print("Webpage content read successfully.")
 
         # saving webpage content to the database
         user_message = Message(
