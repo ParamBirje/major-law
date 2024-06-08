@@ -45,3 +45,22 @@ async def reference_webpage(request: Request, webpage: Webpage):
         return JSONResponse({
             "error": "Couldn't reference website. " + str(e)
         }, status_code=500)
+
+@router.delete("/{message_id}")
+async def delete_webpage(request: Request, message_id: str, created: str):
+    session_id = request.headers.get('session_id')
+    if not session_id:
+        return JSONResponse({
+            "error": "session_id is required in the request header."
+        }, status_code=400)
+
+    try:
+        print("Deleting web source for message_id", message_id, "and created", created)
+        db.delete_message(str(message_id), str(created))
+        return JSONResponse({
+            "message": "Webpage content deleted successfully."
+        }, status_code=200)
+    except Exception as e:
+        return JSONResponse({
+            "error": "Couldn't delete webpage content. " + str(e)
+        }, status_code=500)

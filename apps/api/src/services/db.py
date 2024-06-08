@@ -25,10 +25,16 @@ class MessageService:
         else:
             return response
 
-    def delete_message(self, message_id: str):
+    def delete_message(self, message_id: str, created: str):
         try:
-            response = messages_table.delete_item(Key={'message_id': message_id})
+            response = messages_table.delete_item(
+                Key={
+                    'message_id': message_id, 
+                    "created": created
+                }
+            )
         except ClientError as e:
+            print(e)
             print(e.response['Delete item failed'])
         else:
             return response
