@@ -20,6 +20,7 @@ class MessageService:
         try:
             response = messages_table.put_item(Item=message.data)
         except ClientError as e:
+            print(e)
             print(e.response['Couldnt put item'])
         else:
             return response
@@ -34,6 +35,8 @@ class MessageService:
 
     def get_messages(self, session_id: str) -> List[Message]:
         response = messages_table.query(
-            KeyConditionExpression=Key('session_id').eq(session_id)
+            IndexName='session_id-index',
+            KeyConditionExpression=Key('session_id').eq(session_id),
+            ScanIndexForward=True
         )
         return response['Items']

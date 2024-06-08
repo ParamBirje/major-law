@@ -25,18 +25,10 @@ export default function Chat() {
     try {
       setLoading(true);
 
-      console.log(
-        "prompt",
-        message,
-        "session",
-        sessionStorage.getItem("session_id") || ""
-      );
-
       const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/chat", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          session_id: sessionStorage.getItem("session_id") || "",
+          session_id: String(sessionStorage.getItem("session_id") || ""),
         },
         body: JSON.stringify({ prompt: String(message) }),
       });
@@ -83,25 +75,26 @@ export default function Chat() {
             Messages
           </h3>
           <div className="flex flex-col-reverse gap-5">
-            {messages.map((message, i) => {
-              return (
-                <Alert key={i}>
-                  {message.role == "USER" ? (
-                    <AvatarIcon className="h-4 w-4" />
-                  ) : (
-                    <RocketIcon className="h-4 w-4" />
-                  )}
-                  <AlertTitle
-                    className={`${
-                      message.role == "CHATBOT" && "text-green-500"
-                    } capitalize`}
-                  >
-                    {message.role}
-                  </AlertTitle>
-                  <AlertDescription>{message.message}</AlertDescription>
-                </Alert>
-              );
-            })}
+            {messages.length !== 0 &&
+              messages.map((message, i) => {
+                return (
+                  <Alert key={i}>
+                    {message.role == "USER" ? (
+                      <AvatarIcon className="h-4 w-4" />
+                    ) : (
+                      <RocketIcon className="h-4 w-4" />
+                    )}
+                    <AlertTitle
+                      className={`${
+                        message.role == "CHATBOT" && "text-green-500"
+                      } capitalize`}
+                    >
+                      {message.role}
+                    </AlertTitle>
+                    <AlertDescription>{message.message}</AlertDescription>
+                  </Alert>
+                );
+              })}
           </div>
         </div>
 

@@ -1,4 +1,4 @@
-from src.models.role import Role
+from typing import List
 from src.models.ai_message import UserMessageForAI
 from src.services.ai_config import one_time_response
 from src.models.message import Message
@@ -8,18 +8,18 @@ class AIService:
     def __init__(self):
         self.system_message = "You are a legal assistant. You are here to help the user with their legal queries. If user asks unrelated questions, strictly say you can only answer legal questions."
 
-    def get_ai_response(self, prompt: str, chat_history: Message) -> str:
+    def get_ai_response(self, prompt: str, chat_history: List[Message]) -> str:
         '''
         Converts `Message` objects to AI compatible and returns the AI response.
         '''
-        message_list: list = chat_history.data
+        message_list = chat_history
         ai_compatible_chat_history = [
             UserMessageForAI(
-                role = Role.USER,
+                role = "USER",
                 message = self.system_message
             ).data,
             UserMessageForAI(
-                role = Role.CHATBOT,
+                role = "CHATBOT",
                 message = "Okay I understand. I will behave as a legal assistant now."
             ).data,
         ]

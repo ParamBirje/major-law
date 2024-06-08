@@ -8,7 +8,7 @@ class Message:
             "message_id": uuid.uuid4().hex,
             "session_id": session_id,
             "message": message,
-            "role": role.value,
-            "created": int(time.time()),
-            "expires": int(time.time()) + 43200 # 12 hours from now
+            "role": role,
+            "created": str(int(time.time())),
+            "expires": str(int(time.time()) + 43200) # 12 hours from now
         }
