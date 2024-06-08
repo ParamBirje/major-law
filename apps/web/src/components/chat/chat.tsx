@@ -57,6 +57,7 @@ export default function Chat() {
           title="Start your legal search here"
           name="message"
           required
+          disabled={loading}
           placeholder="What does the article 15 of GDPR say?"
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
