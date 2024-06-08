@@ -39,6 +39,7 @@ async def reference_webpage(request: Request, webpage: Webpage):
 
         return JSONResponse({
             "message_id": user_message.data['message_id'],
+            "created": user_message.data['created']
         }, status_code=200)
     
     except Exception as e:

@@ -61,6 +61,7 @@ export default function WebSources() {
           {
             message_id: data.message_id,
             url: url,
+            created: data.created,
           },
         ]);
 
