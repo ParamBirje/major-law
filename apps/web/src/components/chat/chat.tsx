@@ -7,19 +7,51 @@ import { useState } from "react";
 import { type Message } from "@/lib/types";
 
 export default function Chat() {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      message_id: "1",
+      role: "CHATBOT",
+      message: "Hello! How can I help you today?",
+    },
+  ]);
   const [newMessage, setNewMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  function handleSendMessage(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSendMessage(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    const message: Message = {
-      message_id: Math.random().toString(36).substring(7),
-      message: String(formData.get("message")),
-      role: "USER",
-    };
-    setMessages([...messages, message]);
-    setNewMessage("");
+    const message = String(formData.get("message"));
+
+    try {
+      setLoading(true);
+
+      console.log(
+        "prompt",
+        message,
+        "session",
+        sessionStorage.getItem("session_id") || ""
+      );
+
+      const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          session_id: sessionStorage.getItem("session_id") || "",
+        },
+        body: JSON.stringify({ prompt: String(message) }),
+      });
+
+      const data = await response.json();
+      const userMessage: Message = data.user_message;
+      const chatbotMessage: Message = data.chatbot_message;
+
+      setMessages([...messages, userMessage, chatbotMessage]);
+      setNewMessage("");
+    } catch (error) {
+      console.error(error);
+    }
+
+    setLoading(false);
   }
 
   return (
@@ -29,6 +61,7 @@ export default function Chat() {
           className="w-full"
           title="Start your legal search here"
           name="message"
+          required
           placeholder="What does the article 15 of GDPR say?"
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
@@ -36,9 +69,10 @@ export default function Chat() {
 
         <Button
           type="submit"
+          disabled={loading}
           className="h-auto w-[15%] flex gap-2 items-center"
         >
-          <p>Send</p>
+          <p>{loading ? "Sending" : "Send"}</p>
           <PaperPlaneIcon />
         </Button>
       </form>
