@@ -26,7 +26,7 @@ class SessionTimeoutMiddleware(BaseHTTPMiddleware):
 
 
 # Periodically check for expired sessions
-async def check_session_timeouts(interval: int = 60):
+async def check_session_timeouts(interval: int = 5):
     while True:
         print("Checking for expired sessions...")
         now = datetime.now()
@@ -39,4 +39,4 @@ async def check_session_timeouts(interval: int = 60):
             print("clearing data for", session_id)
             SESSION_ACTIVITY.pop(session_id)
 
-        await asyncio.sleep(interval)
+        await asyncio.sleep(interval * 60) # in seconds
