@@ -15,7 +15,7 @@ function Heartbeat() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      fetch("http://127.0.0.1:8000/heartbeat", {
+      fetch(import.meta.env.VITE_BACKEND_URL + "/heartbeat", {
         headers: {
           "Content-Type": "application/json",
           session_id: sessionStorage.getItem("session_id") || "",
