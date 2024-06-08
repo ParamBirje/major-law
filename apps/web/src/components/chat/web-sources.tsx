@@ -109,7 +109,7 @@ export default function WebSources() {
       <CardHeader>
         <CardTitle className="text-lg">Web Sources</CardTitle>
         <CardDescription>
-          Add URLs of the webpages you want to reference.
+          Add URLs of custom webpages you want to reference.
         </CardDescription>
 
         <AlertDialog>

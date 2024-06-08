@@ -12,7 +12,8 @@ export default function Chat() {
     {
       message_id: "1",
       role: "CHATBOT",
-      message: "Hello! How can I help you today?",
+      message:
+        "Hello! How can I help you today? I already have a knowledge base on public sources such as GDPR, CCPA, and more. You can ask me anything!",
     },
   ]);
   const [newMessage, setNewMessage] = useState("");
