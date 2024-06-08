@@ -45,7 +45,7 @@ export default function WebSources() {
   }
 
   return (
-    <Card className="md:w-1/3">
+    <Card className="md:w-1/3 h-fit">
       <CardHeader>
         <CardTitle className="text-lg">Web Sources</CardTitle>
         <CardDescription>
