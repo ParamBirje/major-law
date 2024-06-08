@@ -28,9 +28,12 @@ export default function Chat() {
       const response = await fetch(import.meta.env.VITE_BACKEND_URL + "/chat", {
         method: "POST",
         headers: {
+          "Content-Type": "application/json",
           session_id: String(sessionStorage.getItem("session_id") || ""),
         },
-        body: JSON.stringify({ prompt: String(message) }),
+        body: JSON.stringify({
+          prompt: String(message),
+        }),
       });
 
       const data = await response.json();

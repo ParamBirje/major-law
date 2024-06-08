@@ -38,7 +38,7 @@ async def start_chatting(request: Request, prompt: Prompt):
         )
         ai_message = Message(
             session_id=session_id,
-            role="AI",
+            role="CHATBOT",
             message=ai_message,
         )
 
