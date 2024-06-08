@@ -1,3 +1,4 @@
+from typing import List
 import boto3
 from botocore.exceptions import ClientError
 from src.models.message import Message
@@ -31,7 +32,7 @@ class MessageService:
         else:
             return response
 
-    def get_messages(self, session_id: str):
+    def get_messages(self, session_id: str) -> List[Message]:
         response = messages_table.query(
             KeyConditionExpression=Key('session_id').eq(session_id)
         )

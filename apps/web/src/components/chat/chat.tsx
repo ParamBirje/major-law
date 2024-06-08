@@ -16,7 +16,7 @@ export default function Chat() {
     const message: Message = {
       message_id: Math.random().toString(36).substring(7),
       message: String(formData.get("message")),
-      role: "user",
+      role: "USER",
     };
     setMessages([...messages, message]);
     setNewMessage("");
@@ -52,14 +52,14 @@ export default function Chat() {
             {messages.map((message, i) => {
               return (
                 <Alert key={i}>
-                  {message.role == "user" ? (
+                  {message.role == "USER" ? (
                     <AvatarIcon className="h-4 w-4" />
                   ) : (
                     <RocketIcon className="h-4 w-4" />
                   )}
                   <AlertTitle
                     className={`${
-                      message.role == "ai" && "text-green-500"
+                      message.role == "CHATBOT" && "text-green-500"
                     } capitalize`}
                   >
                     {message.role}

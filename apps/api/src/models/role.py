@@ -2,5 +2,5 @@ from enum import Enum
 
 
 class Role(Enum):
-    USER = 'user'
-    AI = 'ai'
+    USER = 'USER'
+    CHATBOT = 'CHATBOT'

@@ -6,6 +6,6 @@ export type Webpage = {
 export type Message = {
   message_id: string;
   message: string;
-  role: "user" | "ai";
+  role: "USER" | "CHATBOT";
   created?: number;
 };
