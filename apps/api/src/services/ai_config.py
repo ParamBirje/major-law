@@ -42,7 +42,7 @@ def one_time_response(prompt: str, chat_history: List[Dict]) -> str:
     native_request = {
         "message": prompt,
         "chat_history": chat_history,
-        "max_tokens": 1024,
+        "max_tokens": 700,
         "temperature": 0.9,
     }
 
