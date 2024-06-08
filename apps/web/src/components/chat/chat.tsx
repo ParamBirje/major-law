@@ -1,8 +1,8 @@
 import { Input } from "@/components/ui/input";
-import { Button } from "./ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
-import { AvatarIcon, PaperPlaneIcon, RocketIcon, TrashIcon } from "@radix-ui/react-icons";
+import { Button } from "../ui/button";
+import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
+import { AvatarIcon, PaperPlaneIcon, RocketIcon } from "@radix-ui/react-icons";
+import WebSources from "./web-sources";
 
 export default function Chat() {
   return (
@@ -22,7 +22,9 @@ export default function Chat() {
 
       <div className="flex flex-col-reverse md:flex-row gap-5">
         <div className="md:w-2/3">
-          <h3 className="mb-5 scroll-m-20 text-2xl font-semibold tracking-tight">Messages</h3>
+          <h3 className="mb-5 scroll-m-20 text-2xl font-semibold tracking-tight">
+            Messages
+          </h3>
           <div className="flex flex-col gap-5">
             <Alert>
               <RocketIcon className="h-4 w-4" />
@@ -34,30 +36,14 @@ export default function Chat() {
             <Alert>
               <AvatarIcon className="h-4 w-4" />
               <AlertTitle>User</AlertTitle>
-              <AlertDescription>Hey I need help with a certain article in GDPR?</AlertDescription>
+              <AlertDescription>
+                Hey I need help with a certain article in GDPR?
+              </AlertDescription>
             </Alert>
           </div>
         </div>
 
-        <Card className="md:w-1/3">
-          <CardHeader>
-            <CardTitle className="text-lg">Web Sources</CardTitle>
-            <CardDescription>Add URLs of the webpages you want to reference.</CardDescription>
-
-            <Button variant="outline">Add +</Button>
-          </CardHeader>
-
-          <CardContent>
-            <Alert>
-              <div className="flex items-center justify-between">
-                <AlertTitle>gdpr.com</AlertTitle>
-                <button>
-                  <TrashIcon className="text-red-400 hover:text-red-600" />
-                </button>
-              </div>
-            </Alert>
-          </CardContent>
-        </Card>
+        <WebSources />
       </div>
     </section>
   );

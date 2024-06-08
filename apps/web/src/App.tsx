@@ -1,7 +1,7 @@
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import Navbar from "./components/navbar";
-import Chat from "./components/chat";
+import Chat from "./components/chat/chat";
 
 function App() {
   return (
