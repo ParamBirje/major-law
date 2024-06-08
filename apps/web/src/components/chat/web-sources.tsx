@@ -22,11 +22,13 @@ import { TrashIcon } from "@radix-ui/react-icons";
 import { type Webpage } from "@/lib/types";
 import { FormEvent, useState } from "react";
 import { Input } from "../ui/input";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function WebSources() {
   const [webpages, setWebpages] = useState<Webpage[]>([]);
   const [submitSuccessful, setSubmitSuccessful] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
 
   function handleDeleteWebpage(delWebpage: Webpage) {
     try {
@@ -46,6 +48,11 @@ export default function WebSources() {
       setWebpages((prevWebpages) =>
         prevWebpages.filter((webpage) => webpage.url !== delWebpage.url)
       );
+
+      toast({
+        variant: "destructive",
+        description: "Webpage removed from references.",
+      });
     } catch (error) {
       console.error(error);
     }
