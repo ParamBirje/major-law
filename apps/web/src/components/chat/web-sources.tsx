@@ -51,6 +51,7 @@ export default function WebSources() {
 
       toast({
         variant: "destructive",
+        duration: 3500,
         description: "Webpage removed from references.",
       });
     } catch (error) {
@@ -92,6 +93,7 @@ export default function WebSources() {
         setSubmitSuccessful(true);
 
         toast({
+          duration: 3500,
           description: "✅ Webpage added to references successfully.",
         });
       }
