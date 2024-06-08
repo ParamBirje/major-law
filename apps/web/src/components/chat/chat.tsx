@@ -5,6 +5,7 @@ import { AvatarIcon, PaperPlaneIcon, RocketIcon } from "@radix-ui/react-icons";
 import WebSources from "./web-sources";
 import { useState } from "react";
 import { type Message } from "@/lib/types";
+import { Skeleton } from "../ui/skeleton";
 
 export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([
@@ -99,6 +100,8 @@ export default function Chat() {
                   </Alert>
                 );
               })}
+
+            {loading && <Skeleton className="h-12 w-full" />}
           </div>
         </div>
 
