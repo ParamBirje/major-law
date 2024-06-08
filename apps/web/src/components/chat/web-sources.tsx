@@ -29,9 +29,26 @@ export default function WebSources() {
   const [loading, setLoading] = useState(false);
 
   function handleDeleteWebpage(delWebpage: Webpage) {
-    setWebpages((prevWebpages) =>
-      prevWebpages.filter((webpage) => webpage.url !== delWebpage.url)
-    );
+    try {
+      fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/websource/${
+          delWebpage.message_id
+        }?created=${delWebpage.created}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            session_id: sessionStorage.getItem("session_id") || "",
+          },
+        }
+      );
+
+      setWebpages((prevWebpages) =>
+        prevWebpages.filter((webpage) => webpage.url !== delWebpage.url)
+      );
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async function handleAddWebpage(e: FormEvent) {
