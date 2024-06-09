@@ -6,8 +6,11 @@ from src.routes.chat import router as ChatRouter
 from src.routes.heartbeat import router as HeartbeatRouter
 from src.routes.web_source import router as WebSourceRouter
 import asyncio
+from mangum import Mangum
 
 app = FastAPI()
+handler = Mangum(app)
+
 origins = [
     "http://localhost",
     "http://localhost:5173",
