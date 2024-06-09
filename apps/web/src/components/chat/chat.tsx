@@ -6,6 +6,7 @@ import WebSources from "./web-sources";
 import { useState } from "react";
 import { type Message } from "@/lib/types";
 import { Skeleton } from "../ui/skeleton";
+import { useToast } from "../ui/use-toast";
 
 export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([
@@ -18,6 +19,7 @@ export default function Chat() {
   ]);
   const [newMessage, setNewMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
 
   async function handleSendMessage(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -45,6 +47,10 @@ export default function Chat() {
       setMessages([...messages, userMessage, chatbotMessage]);
       setNewMessage("");
     } catch (error) {
+      toast({
+        variant: "destructive",
+        description: "An error occurred while sending the message",
+      });
       console.error(error);
     }
 

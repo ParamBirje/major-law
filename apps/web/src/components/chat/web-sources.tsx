@@ -101,6 +101,12 @@ export default function WebSources() {
           duration: 3500,
           description: "✅ Webpage added to references successfully.",
         });
+      } else {
+        toast({
+          variant: "destructive",
+          duration: 3500,
+          description: "Could not add this webpage.",
+        });
       }
     } catch (error) {
       toast({
@@ -139,7 +145,7 @@ export default function WebSources() {
                   required
                   autoComplete="off"
                   type="url"
-                  disabled={loading}
+                  disabled={loading || submitSuccessful}
                   name="webpage_url"
                   placeholder="https://example.com/article22"
                 />
