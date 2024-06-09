@@ -66,6 +66,14 @@ export default function WebSources() {
 
   async function handleAddWebpage(e: FormEvent) {
     e.preventDefault();
+    if (webpages.length == 2) {
+      toast({
+        duration: 3500,
+        description: "You can only add up to 2 webpages.",
+      });
+      return;
+    }
+
     const formData = new FormData(e.target as HTMLFormElement);
     const url = String(formData.get("webpage_url"));
 
@@ -130,7 +138,20 @@ export default function WebSources() {
 
         <AlertDialog>
           <AlertDialogTrigger asChild>
-            <Button variant="outline">Add +</Button>
+            <Button
+              className="flex items-center justify-between"
+              disabled={webpages.length == 2}
+              variant="outline"
+            >
+              {webpages.length == 2 ? (
+                <p className="text-muted-foreground">Slots full</p>
+              ) : (
+                <p className="text-blue-600">Add +</p>
+              )}
+              <p className="font-normal text-muted-foreground">
+                {webpages.length}/2
+              </p>
+            </Button>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <form onSubmit={handleAddWebpage}>
