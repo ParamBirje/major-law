@@ -10,7 +10,6 @@ from typing import List, Dict
 client = boto3.client("bedrock-runtime", region_name="us-east-1")
 model_id = "cohere.command-r-v1:0"
 llm = BedrockLLM(
-    credentials_profile_name="default",
     region_name="us-east-1",
     model_id="amazon.titan-text-express-v1",
     model_kwargs={
