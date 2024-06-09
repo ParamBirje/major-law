@@ -9,11 +9,11 @@ import asyncio
 from mangum import Mangum
 
 app = FastAPI()
-handler = Mangum(app)
 
 origins = [
-    "http://localhost",
-    "http://localhost:5173",
+    # "http://localhost",
+    # "http://localhost:5173",
+    "*"
 ]
 
 # Routers
@@ -49,3 +49,5 @@ def home():
     return JSONResponse({
         "message": "Backend is up!"
     }, status_code=200)
+
+handler = Mangum(app)
