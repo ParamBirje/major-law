@@ -29,14 +29,15 @@ app.add_middleware(
 )
 app.add_middleware(SessionTimeoutMiddleware)
 
+# Commented this, as TTL is setup in dynamodb
 
-@app.on_event("startup")
-async def startup_event():
-    '''
-    Check for session timeouts every interval
-    '''
-    print("Starting session timeout checker.")
-    asyncio.create_task(check_session_timeouts())
+# @app.on_event("startup")
+# async def startup_event():
+#     '''
+#     Check for session timeouts every interval
+#     '''
+#     print("Starting session timeout checker.")
+#     asyncio.create_task(check_session_timeouts())
 
 
 @app.get("/")
