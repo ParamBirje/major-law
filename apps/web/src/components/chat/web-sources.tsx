@@ -55,6 +55,11 @@ export default function WebSources() {
         description: "Webpage removed from references.",
       });
     } catch (error) {
+      toast({
+        variant: "destructive",
+        duration: 3500,
+        description: "Failed to remove webpage from references.",
+      });
       console.error(error);
     }
   }
@@ -98,6 +103,11 @@ export default function WebSources() {
         });
       }
     } catch (error) {
+      toast({
+        variant: "destructive",
+        duration: 3500,
+        description: "Failed to add this webpage.",
+      });
       console.error(error);
     }
 
