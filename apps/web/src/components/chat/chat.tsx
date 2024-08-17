@@ -99,7 +99,7 @@ export default function Chat() {
                     <AlertTitle
                       className={`${
                         message.role == "CHATBOT" && "text-green-500"
-                      } capitalize`}
+                      } capitalize text-xs font-bold`}
                     >
                       {message.role}
                     </AlertTitle>
