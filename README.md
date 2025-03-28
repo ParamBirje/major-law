@@ -1,6 +1,6 @@
 <!-- PROJECT LOGO -->
 <p align="center">
-   <!-- <img src="https://github.com/ParamBirje/lingopilot/assets/87022870/bbf5a268-e7a5-43ea-bfce-0b1564cfb22c.png" alt="Logo"> -->
+  <img src="https://github.com/user-attachments/assets/1c56f55d-1549-46dd-93a2-20b2bc3f7be7" alt="Logo">
 
   <h2 align="center">MajorLaw</h2>
 
